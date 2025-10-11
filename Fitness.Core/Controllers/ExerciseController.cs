@@ -7,9 +7,6 @@ namespace Fitness.Core.Controllers
 {
     public class ExerciseController : ControllerBase
     {
-        private const string ExercisesFileName = "exercises.dat";
-        private const string ActivitiesFileName = "activities.dat";
-
         private readonly User _user;
 
         public List<Exercise> Exercises;
@@ -22,7 +19,7 @@ namespace Fitness.Core.Controllers
             Activities = GetAllActivities();
         }
 
-        private List<Activity> GetAllActivities() => Load<List<Activity>>(ActivitiesFileName) ?? new List<Activity>();
+        private List<Activity> GetAllActivities() => Load<Activity>() ?? new List<Activity>();
 
         public void Add(Activity activity, DateTime begin, DateTime end) 
         {
@@ -43,12 +40,8 @@ namespace Fitness.Core.Controllers
             Save();
         }
 
-        private List<Exercise> GetAllExercises() => Load<List<Exercise>>(ExercisesFileName) ?? new List<Exercise>();
+        private List<Exercise> GetAllExercises() => Load<Exercise>() ?? new List<Exercise>();
 
-        private void Save()
-        {
-            Save(ExercisesFileName, Exercises);
-            Save(ActivitiesFileName, Activities);
-        }
+        private void Save() => Save();
     }
 }

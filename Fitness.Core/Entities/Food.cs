@@ -5,37 +5,36 @@ namespace Fitness.Core.Entities
     [Serializable]
     public class Food
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Наименование.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Белки за 100 гр продукта.
         /// </summary>
-        public double Proteins { get; }
+        public double Proteins { get; set; }
 
         /// <summary>
         /// Жиры за 100 гр продукта.
         /// </summary>
-        public double Fats { get; }
+        public double Fats { get; set; }
 
         /// <summary>
         /// Углеводы за 100 гр продукта.
         /// </summary>
-        public double Carbohydrates { get; }
+        public double Carbohydrates { get; set; }
 
         /// <summary>
         /// КАЛории за 100 гр продукта.
         /// </summary>
-        public double Calories { get; }
-
-        private double _caloriesByOneGramm => Calories / 100;
-        private double _proteinsByOneGramm => Proteins / 100;
-        private double _fatsByOneGramm => Fats / 100;
-        private double _carbohydrates => Carbohydrates / 100;
+        public double Calories { get; set; }
 
         public Food(string name) : this(name, 0, 0, 0, 0) { }
+
+        public Food() { }
 
         public Food(string name, double proteins, double fats, double carbohydrates, double calories)
         {

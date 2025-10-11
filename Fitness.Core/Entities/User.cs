@@ -10,15 +10,19 @@ namespace Fitness.Core.Entities
     public class User
     {
         #region Свойства
+        public int Id { get; set; }
+
         /// <summary>
         /// Имя пользователя.
         /// </summary>
         public string Name { get; set; }
 
+        public int GenderId { get; set; }
+
         /// <summary>
         /// Пол пользователя.
         /// </summary>
-        public Gender Gender { get; set; }
+        public virtual Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя.
@@ -87,6 +91,8 @@ namespace Fitness.Core.Entities
             Weight = weight;
             Height = height;
         }
+
+        public User() { } // для EF у моделей такой конструктор ВСЕГДА
 
         public User(string name)
         {

@@ -9,6 +9,8 @@ namespace Fitness.Core.Entities
     [Serializable]
     public class Gender
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Название пола.
         /// </summary>
@@ -25,5 +27,7 @@ namespace Fitness.Core.Entities
 
             Name = name;
         }
+
+        public Gender() { }
     }
 }

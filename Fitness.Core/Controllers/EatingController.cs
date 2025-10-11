@@ -7,9 +7,6 @@ namespace Fitness.Core.Controllers
 {
     public class EatingController : ControllerBase
     {
-        private const string FoodsfileName = "foods.dat";
-        private const string EatingsFileName = "eatings.dat";
-
         private User _user;
 
         public List<Food> Foods { get; }
@@ -38,14 +35,10 @@ namespace Fitness.Core.Controllers
             }
         }
 
-        private List<Food> GetAllFoods() => Load<List<Food>>(FoodsfileName) ?? new List<Food>();
+        private List<Food> GetAllFoods() => Load<Food>();
 
-        private Eating GetEating() => Load<Eating>(EatingsFileName) ?? new Eating(_user);
+        private Eating GetEating() => Load<Eating>().FirstOrDefault() ?? new Eating(_user);
 
-        private void Save()
-        {
-            Save(FoodsfileName, Foods);
-            Save(EatingsFileName, Eating);
-        }
+        private void Save() => Save();
     }
 }
