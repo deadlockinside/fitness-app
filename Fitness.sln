@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitness.Core", "Fitness.Core\Fitness.Core.csproj", "{6F759E32-2732-483B-8387-9E02AA0CC43B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitness.UI.Console", "Fitness.UI.Console\Fitness.UI.Console.csproj", "{AE81C34E-04A5-4ECA-9436-EFB0E57418A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitness.UI.ConsoleApp", "Fitness.UI.Console\Fitness.UI.ConsoleApp.csproj", "{AE81C34E-04A5-4ECA-9436-EFB0E57418A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13BD12E5-479C-4D75-9B7A-E9FCB3EACC67}
 	EndGlobalSection
 EndGlobal

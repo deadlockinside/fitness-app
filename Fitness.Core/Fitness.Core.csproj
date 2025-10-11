@@ -42,12 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ExceptionMessages.cs" />
+    <Compile Include="Common\ValidationRules.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

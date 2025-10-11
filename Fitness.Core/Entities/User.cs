@@ -53,13 +53,13 @@ namespace Fitness.Core.Entities
             if (gender is null)
                 throw new ArgumentNullException(ExceptionMessages.InvalidGender, nameof(gender));
 
-            if (birthdate < DateTime.Parse("01.01.1900") || birthdate > DateTime.Now)
+            if (birthdate < DateTime.Parse(ValidationRules.MinBirthdate) || birthdate > DateTime.Now)
                 throw new ArgumentException(ExceptionMessages.InvalidBirthdate, nameof(birthdate));
 
-            if (weight <= 0)
+            if (weight < ValidationRules.MinWeight)
                 throw new ArgumentException(ExceptionMessages.InvalidWeight, nameof(weight));
 
-            if (height <= 0)
+            if (height < ValidationRules.MinHeight)
                 throw new ArgumentException(ExceptionMessages.InvalidHeight, nameof(height));
             #endregion
 
@@ -69,5 +69,7 @@ namespace Fitness.Core.Entities
             Weight = weight;
             Height = height;
         }
+
+        public override string ToString() => Name;
     }
 }
