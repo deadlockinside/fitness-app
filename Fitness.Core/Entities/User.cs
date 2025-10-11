@@ -34,6 +34,24 @@ namespace Fitness.Core.Entities
         /// Рост пользователя.
         /// </summary>
         public double Height { get; set; }
+
+        /// <summary>
+        /// Возраст пользователя.
+        /// </summary>
+        public int Age 
+        { 
+            get 
+            {
+                DateTime nowDate = DateTime.Today;
+
+                int age = nowDate.Year - Birthdate.Year;
+
+                if (Birthdate > nowDate.AddYears(-age))
+                    age--;
+
+                return age;
+            } 
+        }
         #endregion
 
         /// <summary>
@@ -70,6 +88,14 @@ namespace Fitness.Core.Entities
             Height = height;
         }
 
-        public override string ToString() => Name;
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(ExceptionMessages.InvalidUserName, nameof(name));
+
+            Name = name;
+        }
+
+        public override string ToString() => Name + " " + Age;
     }
 }

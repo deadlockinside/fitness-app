@@ -12,20 +12,48 @@ namespace Fitness.UI.ConsoleApp
             Console.Write("Введите имя пользователя: ");
             var name = Console.ReadLine();
 
-            Console.Write("Введите пол: ");
-            var gender = Console.ReadLine();
+            var userController = new UserController(name);
 
-            Console.Write("Введите дату рождения: ");
-            var birthdate = DateTime.Parse(Console.ReadLine());
+            if (userController.IsNewUser)
+            {
+                Console.Write("Введите пол: ");
+                var gender = Console.ReadLine();
 
-            Console.Write("Введите вес: ");
-            var weight = double.Parse(Console.ReadLine());
+                DateTime birthdate = ParseDateTime();
 
-            Console.Write("Введите рост: ");
-            var height = double.Parse(Console.ReadLine());
+                double weight = ParseDouble("вес");
+                double height = ParseDouble("рост");
 
-            var userController = new UserController(name, gender, birthdate, weight, height);
-            userController.Save();
+                userController.SetNewUserData(gender, birthdate, weight, height);
+            }
+
+            Console.WriteLine(userController.CurrentUser);
+        }
+
+        private static DateTime ParseDateTime()
+        {
+            while (true)
+            {
+                Console.Write("Введите дату рождения (dd.MM.yyyy): ");
+
+                if (DateTime.TryParse(Console.ReadLine(), out DateTime birthdate))
+                    return birthdate;
+
+                Console.WriteLine("Неверный формат даты рождения.");
+            }
+        }
+
+        private static double ParseDouble(string paramName) 
+        {
+            while (true) 
+            {
+                Console.Write($"Введите {paramName}: ");
+
+                if (double.TryParse(Console.ReadLine(), out double value))
+                    return value;
+
+                Console.WriteLine($"Неверный формат параметра {paramName}");
+            }
         }
     }
 }
