@@ -1,4 +1,5 @@
-﻿using Fitness.Core.Entities;
+﻿using Fitness.Core.Controllers;
+using Fitness.Core.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -17,13 +18,13 @@ namespace Fitness.Core.Controllers.Tests
             var rnd = new Random();
             var userController = new UserController(userName);
             var eatingController = new EatingController(userController.CurrentUser);
-            var food = new Food(foodName, rnd.Next(50,500), rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500));
+            var food = new Food(foodName, rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500));
 
             // Act
             eatingController.Add(food, 100);
 
             // Assert
-            //Assert.AreEqual(food.Name, eatingController.Eating.Foods.First().Key.Name);
+            Assert.AreEqual(food.Name, eatingController.Eating.Foods.First().Key.Name);
         }
     }
 }
