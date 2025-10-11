@@ -1,6 +1,8 @@
 ﻿using Fitness.Core.Controllers;
 using Fitness.Core.Entities;
 using System;
+using System.Globalization;
+using System.Resources;
 
 namespace Fitness.UI.ConsoleApp
 {
@@ -8,18 +10,21 @@ namespace Fitness.UI.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness");
+            var culture = CultureInfo.CreateSpecificCulture("en-us");
+            var resourceManager = new ResourceManager("Fitness.UI.Console.Languages.Messages", typeof(Program).Assembly);
 
-            Console.Write("Введите имя пользователя: ");
-            var name = Console.ReadLine();
+            System.Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            System.Console.Write(resourceManager.GetString("EnterName", culture));
+            var name = System.Console.ReadLine();
 
             var userController = new UserController(name);
             var eatingController = new EatingController(userController.CurrentUser);
 
             if (userController.IsNewUser)
             {
-                Console.Write("Введите пол: ");
-                var gender = Console.ReadLine();
+                System.Console.Write("Введите пол: ");
+                var gender = System.Console.ReadLine();
 
                 DateTime birthdate = ParseDateTime();
 
@@ -29,12 +34,12 @@ namespace Fitness.UI.ConsoleApp
                 userController.SetNewUserData(gender, birthdate, weight, height);
             }
 
-            Console.WriteLine(userController.CurrentUser);
+            System.Console.WriteLine(userController.CurrentUser);
 
-            Console.WriteLine("Что вы хотите сделать?");
-            Console.WriteLine("E - ввести прием пищи");
+            System.Console.WriteLine("Что вы хотите сделать?");
+            System.Console.WriteLine("E - ввести прием пищи");
 
-            var key = Console.ReadKey();
+            var key = System.Console.ReadKey();
 
             if (key.Key == ConsoleKey.E) 
             {
@@ -42,14 +47,14 @@ namespace Fitness.UI.ConsoleApp
                 eatingController.Add(foods.Food, foods.Weight);
 
                 foreach(var item in eatingController.Eating.Foods)
-                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                    System.Console.WriteLine($"\t{item.Key} - {item.Value}");
             }
         }
 
         private static (Food Food, double Weight) EnterEating()
         {
-            Console.Write("Введите имя продукта: ");
-            var foodName = Console.ReadLine();
+            System.Console.Write("Введите имя продукта: ");
+            var foodName = System.Console.ReadLine();
 
             var calories = ParseDouble("каллорийность");
             var proteins = ParseDouble("белки");
@@ -66,12 +71,12 @@ namespace Fitness.UI.ConsoleApp
         {
             while (true)
             {
-                Console.Write("Введите дату рождения (dd.MM.yyyy): ");
+                System.Console.Write("Введите дату рождения (dd.MM.yyyy): ");
 
-                if (DateTime.TryParse(Console.ReadLine(), out DateTime birthdate))
+                if (DateTime.TryParse(System.Console.ReadLine(), out DateTime birthdate))
                     return birthdate;
 
-                Console.WriteLine("Неверный формат даты рождения.");
+                System.Console.WriteLine("Неверный формат даты рождения.");
             }
         }
 
@@ -79,12 +84,12 @@ namespace Fitness.UI.ConsoleApp
         {
             while (true) 
             {
-                Console.Write($"Введите {paramName}: ");
+                System.Console.Write($"Введите {paramName}: ");
 
-                if (double.TryParse(Console.ReadLine(), out double value))
+                if (double.TryParse(System.Console.ReadLine(), out double value))
                     return value;
 
-                Console.WriteLine($"Неверный формат параметра {paramName}");
+                System.Console.WriteLine($"Неверный формат параметра {paramName}");
             }
         }
     }
